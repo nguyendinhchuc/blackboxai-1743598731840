@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng - Thời Trang 7</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <div id="header-container">
+      <!-- Header content will be loaded here by JavaScript -->
+    </div>
+    
+    <!-- Promo Banner -->
+    <section class="relative bg-cover bg-center h-64" style="background-image: url('https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg')">
+      <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
+      <div class="relative container mx-auto px-4 h-full flex items-center">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Giảm giá 50% mùa thu</h2>
+          <p class="text-lg text-white mb-6">Áp dụng cho tất cả sản phẩm mới</p>
+          <a href="#products" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md transition inline-block">
+            Mua ngay <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <main class="py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-8">Sản Phẩm</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg" alt="Áo thun" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Áo Thun Cổ Tròn</h3>
+                        <p class="text-gray-600 mb-4">Chất liệu cotton mềm mại</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">350.000đ</span>
+                            <button class="add-to-cart bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+                                    data-product-id="ao-thun-1"
+                                    data-product-name="Áo Thun Cổ Tròn" 
+                                    data-product-price="350000"
+                                    data-product-image="https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg">
+                                Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://images.pexels.com/photos/1021291/pexels-photo-1021291.jpeg" alt="Quần jeans" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Quần Jeans Nam</h3>
+                        <p class="text-gray-600 mb-4">Dáng slimfit cao cấp</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">550.000đ</span>
+                            <button class="add-to-cart bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+                                    data-product-id="quan-jeans-1"
+                                    data-product-name="Quần Jeans Nam"
+                                    data-product-price="550000"
+                                    data-product-image="https://images.pexels.com/photos/1021291/pexels-photo-1021291.jpeg">
+                                Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg" alt="Áo khoác" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Áo Khoác Dù</h3>
+                        <p class="text-gray-600 mb-4">Chống nước, chống gió</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">450.000đ</span>
+                            <button class="add-to-cart bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+                                    data-product-id="ao-khoac-1"
+                                    data-product-name="Áo Khoác Dù"
+                                    data-product-price="450000"
+                                    data-product-image="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg">
+                                Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <div id="footer-container">
+      <!-- Footer content will be loaded here by JavaScript -->
+    </div>
+    <script>
+      // Load header
+      fetch('/components/Header.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-container').innerHTML = data;
+        });
+
+      // Load footer
+      fetch('/components/Footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer-container').innerHTML = data;
+        });
+    </script>
+</body>
+</html>
