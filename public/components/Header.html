@@ -20,14 +20,24 @@
             <button class="text-gray-600 hover:text-black transition">
                 <i class="fas fa-search text-xl"></i>
             </button>
-            <button class="text-gray-600 hover:text-black transition relative">
+            <button id="cart-icon" class="text-gray-600 hover:text-black transition relative">
                 <i class="fas fa-shopping-cart text-xl"></i>
                 <span class="cart-badge absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
             </button>
+            <a href="/admin/login.html" id="adminLink" class="hidden px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+                <i class="fas fa-user-shield mr-1"></i>Admin
+            </a>
             <button class="text-gray-600 hover:text-black transition">
                 <i class="fas fa-user text-xl"></i>
             </button>
         </div>
+        
+        <script>
+        // Hiển thị link admin nếu đã đăng nhập
+        if (localStorage.getItem('adminAuth')) {
+            document.getElementById('adminLink').classList.remove('hidden');
+        }
+        </script>
     </div>
 
     <!-- Mobile Menu -->
