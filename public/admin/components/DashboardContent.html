@@ -1,0 +1,48 @@
+<div class="flex-1 overflow-auto p-6">
+    <div class="mb-6">
+        <h2 class="text-2xl font-semibold">Trang tổng quan</h2>
+    </div>
+
+    <!-- Metric Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Total Products Card -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-200">
+            <div class="flex items-center mb-4">
+                <i class="fas fa-box text-3xl text-blue-500 mr-3"></i>
+                <h3 class="text-lg font-medium">Tổng sản phẩm</h3>
+            </div>
+            <div class="text-2xl font-bold" id="totalProducts">0</div>
+        </div>
+
+        <!-- Recent Orders Card -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-200">
+            <div class="flex items-center mb-4">
+                <i class="fas fa-list-alt text-3xl text-green-500 mr-3"></i>
+                <h3 class="text-lg font-medium">Đơn hàng mới</h3>
+            </div>
+            <div class="space-y-2" id="recentOrders"></div>
+        </div>
+
+        <!-- Sales This Month Card -->
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-200">
+            <div class="flex items-center mb-4">
+                <i class="fas fa-chart-line text-3xl text-orange-500 mr-3"></i>
+                <h3 class="text-lg font-medium">Doanh thu tháng</h3>
+            </div>
+            <div class="text-2xl font-bold" id="salesThisMonth">0 VND</div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mt-8">
+        <h3 class="text-lg font-medium mb-4">Thao tác nhanh</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="products.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg flex items-center justify-center">
+                <i class="fas fa-plus mr-2"></i> Thêm sản phẩm
+            </a>
+            <a href="orders.html" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-3 rounded-lg flex items-center justify-center">
+                <i class="fas fa-truck mr-2"></i> Xem đơn hàng
+            </a>
+        </div>
+    </div>
+</div>
