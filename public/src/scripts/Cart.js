@@ -57,6 +57,16 @@ class Cart {
     }
 
     this.saveCart(cart);
+    this.addIconAnimation();
+  }
+
+  // Add CSS animation for cart icon
+  addIconAnimation() {
+    const cartIcon = document.getElementById('cart-icon');
+    if (cartIcon) {
+      cartIcon.classList.add('animate-ping');
+      setTimeout(() => cartIcon.classList.remove('animate-ping'), 500);
+    }
   }
 
   // Remove item from cart
@@ -162,7 +172,8 @@ class Cart {
           </span>
         </div>
         <button id="checkout-btn" 
-                class="w-full mt-4 bg-black text-white py-2 rounded hover:bg-gray-800 transition">
+                class="w-full mt-4 bg-black text-white py-2 rounded hover:bg-gray-800 transition"
+                onclick="window.location.href='/checkout.html'">
           Thanh toán
         </button>
       </div>
