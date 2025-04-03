@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .login-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="login-container w-full max-w-md p-8 rounded-lg shadow-lg text-white">
+        <div class="text-center mb-8">
+            <i class="fas fa-lock text-4xl mb-4"></i>
+            <h1 class="text-3xl font-bold">Đăng nhập Admin</h1>
+            <p class="text-gray-200">Vui lòng nhập thông tin đăng nhập</p>
+        </div>
+        
+        <form id="loginForm" class="space-y-6">
+            <div>
+                <label for="username" class="block text-sm font-medium">Tên đăng nhập</label>
+                <input type="text" id="username" name="username" 
+                       class="mt-1 p-3 w-full rounded bg-white bg-opacity-20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white"
+                       placeholder="Nhập tên đăng nhập" required>
+            </div>
+            
+            <div>
+                <label for="password" class="block text-sm font-medium">Mật khẩu</label>
+                <input type="password" id="password" name="password" 
+                       class="mt-1 p-3 w-full rounded bg-white bg-opacity-20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white"
+                       placeholder="Nhập mật khẩu" required>
+            </div>
+            
+            <div>
+                <button type="submit" 
+                        class="w-full py-3 px-4 bg-white text-indigo-700 font-bold rounded hover:bg-gray-100 transition duration-300">
+                    Đăng nhập
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Kiểm tra thông tin đăng nhập
+            if (username === 'admin' && password === 'admin123') {
+                localStorage.setItem('adminAuth', 'true');
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Sai tên đăng nhập hoặc mật khẩu!');
+            }
+        });
+    </script>
+</body>
+</html>
