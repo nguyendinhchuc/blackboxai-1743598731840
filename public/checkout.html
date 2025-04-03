@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanh toán</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold">ShopName</a>
+      <div class="flex items-center">
+        <a href="/cart.html" class="relative mr-4">
+          <i class="fas fa-shopping-cart text-xl"></i>
+          <span class="cart-badge absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-8">Thanh toán</h1>
+    
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Cart items -->
+      <div class="w-full md:w-2/5">
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-xl font-semibold mb-4">Giỏ hàng của bạn</h2>
+          <div id="cart-items"></div>
+        </div>
+      </div>
+      
+      <!-- Checkout form -->
+      <div class="w-full md:w-3/5">
+        <form id="checkout-form" class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-xl font-semibold mb-6">Thông tin thanh toán</h2>
+          
+          <div class="mb-6">
+            <h3 class="font-medium mb-4">Thông tin khách hàng</h3>
+            <div class="space-y-4">
+              <input type="text" placeholder="Họ và tên" required 
+                     class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500">
+              <input type="email" placeholder="Email" required 
+                     class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500">
+              <input type="text" placeholder="Địa chỉ" required 
+                     class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500">
+              <div class="grid grid-cols-2 gap-4">
+                <input type="text" placeholder="Thành phố" required 
+                       class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500">
+                <input type="text" placeholder="Mã bưu điện" required 
+                       class="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500">
+              </div>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="font-medium mb-4">Phương thức thanh toán</h3>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <input type="radio" id="cod" name="payment" checked 
+                       class="mr-2">
+                <label for="cod">Thanh toán khi nhận hàng (COD)</label>
+              </div>
+              <div class="flex items-center">
+                <input type="radio" id="credit" name="payment" 
+                       class="mr-2">
+                <label for="credit">Thẻ tín dụng</label>
+              </div>
+            </div>
+          </div>
+          
+          <button type="submit" 
+                  class="w-full bg-black text-white py-3 rounded hover:bg-gray-800 transition">
+            Hoàn tất đơn hàng
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+      <p class="text-center">© 2023 ShopName. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/src/scripts/Cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Handle form submission
+      document.getElementById('checkout-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (e.target.checkValidity()) {
+          cart.clearCart();
+          window.location.href = '/confirmation.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
