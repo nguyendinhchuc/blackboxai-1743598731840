@@ -1,0 +1,67 @@
+/* Admin Styles */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Sidebar */
+.bg-gray-800 {
+    background-color: #1f2937;
+}
+
+/* Table Styles */
+.min-w-full {
+    min-width: 100%;
+}
+
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+    border-top-width: 1px;
+}
+
+/* Modal Animation */
+#productModal {
+    transition: opacity 0.3s ease;
+}
+
+/* Button Hover Effects */
+button:hover {
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Form Input Focus */
+input:focus, textarea:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+}
+
+.notification.success {
+    background-color: #10b981;
+}
+
+.notification.error {
+    background-color: #ef4444;
+}
