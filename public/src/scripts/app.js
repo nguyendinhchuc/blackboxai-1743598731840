@@ -50,4 +50,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Cart Modal Logic
+    const cartIcon = document.getElementById('cart-icon');
+    const cartModal = document.getElementById('cart-modal');
+    const closeModal = document.getElementById('close-cart');
+    const backdrop = cartModal?.querySelector('.bg-black/50');
+
+    if (cartIcon && cartModal) {
+        // Toggle modal visibility
+        const toggleCartModal = () => {
+            cartModal.classList.toggle('hidden');
+            const cartPanel = cartModal.querySelector('div:not(.bg-black/50)');
+            if (cartModal.classList.contains('hidden')) {
+                cartPanel.classList.remove('translate-x-0');
+                cartPanel.classList.add('translate-x-full');
+            } else {
+                cartPanel.classList.remove('translate-x-full');
+                cartPanel.classList.add('translate-x-0');
+                cart.renderCartItems('cart-items'); // Re-render items on open
+            }
+        };
+
+        // Event listeners
+        cartIcon.addEventListener('click', toggleCartModal);
+        if (closeModal) closeModal.addEventListener('click', toggleCartModal);
+        if (backdrop) backdrop.addEventListener('click', toggleCartModal);
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !cartModal.classList.contains('hidden')) {
+                toggleCartModal();
+            }
+        });
+    }
 });
