@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - Thời Trang 7</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .product-image { cursor: pointer; transition: transform 0.3s; }
+        .product-image:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="bg-gray-50 product-detail-page">
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <main class="py-12">
+        <div class="container mx-auto px-4">
+            <!-- Product Detail Section -->
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Product Images -->
+                <div class="md:w-1/2">
+                    <div class="product-images grid grid-cols-2 gap-4">
+                        <!-- Images will be loaded by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="md:w-1/2">
+                    <h1 id="product-name" class="text-2xl font-bold mb-4"></h1>
+                    
+                    <div class="flex items-baseline mb-4">
+                        <span id="product-price" class="text-xl font-bold text-red-500"></span>
+                        <span id="original-price" class="ml-2 text-gray-500 line-through"></span>
+                    </div>
+
+                    <p id="product-description" class="text-gray-600 mb-6"></p>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium mb-2">Kích cỡ</label>
+                        <select id="size-select" class="w-full p-2 border rounded">
+                            <!-- Options will be loaded by JavaScript -->
+                        </select>
+                    </div>
+
+                    <div class="flex items-center mb-6">
+                        <label class="block text-sm font-medium mr-4">Số lượng</label>
+                        <div class="flex items-center">
+                            <button onclick="updateQuantity(-1)" class="bg-gray-200 px-3 py-1 rounded-l">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" id="quantity" value="1" min="1" 
+                                   class="w-16 text-center border-t border-b">
+                            <button onclick="updateQuantity(1)" class="bg-gray-200 px-3 py-1 rounded-r">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="add-to-cart w-full bg-black text-white py-3 rounded hover:bg-gray-800 transition">
+                        Thêm vào giỏ hàng
+                    </button>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="mt-16">
+                <h2 class="text-2xl font-bold mb-8">Sản phẩm liên quan</h2>
+                <div class="related-products grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Related products will be loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="/src/scripts/Cart.js"></script>
+    <script src="/src/scripts/ProductDetail.js"></script>
+    <script>
+        // Load header and footer
+        fetch('/components/Header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+            });
+
+        fetch('/components/Footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            });
+
+        // Quantity control
+        function updateQuantity(change) {
+            const input = document.getElementById('quantity');
+            let quantity = parseInt(input.value) + change;
+            quantity = Math.max(quantity, 1);
+            input.value = quantity;
+        }
+    </script>
+</body>
+</html>
