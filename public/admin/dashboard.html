@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+    <script src="data.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Authentication Check -->
+    <script>
+        if (!localStorage.getItem('adminAuth')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <!-- Include Admin Header -->
+    <div id="admin-header"></div>
+
+    <div class="flex flex-1">
+        <!-- Sidebar Navigation -->
+        <div class="bg-gray-800 text-white w-64 p-4">
+            <div class="flex items-center space-x-2 p-4 border-b border-gray-700">
+                <i class="fas fa-user-shield text-2xl"></i>
+                <h1 class="text-xl font-bold">Admin Panel</h1>
+            </div>
+            <nav class="mt-6">
+                <a href="dashboard.html" class="block py-2 px-4 bg-gray-700 rounded">
+                    <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+                </a>
+                <a href="products.html" class="block py-2 px-4 mt-2 hover:bg-gray-700 rounded">
+                    <i class="fas fa-boxes mr-2"></i> Quản lý sản phẩm
+                </a>
+                <a href="orders.html" class="block py-2 px-4 mt-2 hover:bg-gray-700 rounded">
+                    <i class="fas fa-shopping-cart mr-2"></i> Đơn hàng
+                </a>
+                <button onclick="logout()" class="w-full text-left py-2 px-4 mt-2 hover:bg-gray-700 rounded">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+                </button>
+            </nav>
+        </div>
+
+        <!-- Include Dashboard Content -->
+        <div id="dashboard-content"></div>
+    </div>
+
+    <!-- Include Admin Footer -->
+    <div id="admin-footer"></div>
+
+    <!-- Load Components -->
+    <script>
+        // Load components
+        Promise.all([
+            fetch('components/AdminHeader.html').then(res => res.text()),
+            fetch('components/DashboardContent.html').then(res => res.text()),
+            fetch('components/AdminFooter.html').then(res => res.text())
+        ]).then(([header, content, footer]) => {
+            document.getElementById('admin-header').innerHTML = header;
+            document.getElementById('dashboard-content').innerHTML = content;
+            document.getElementById('admin-footer').innerHTML = footer;
+            
+            // Initialize dashboard data
+            document.getElementById('totalProducts').textContent = getProducts().length;
+            
+            const orders = getOrders();
+            const recentOrdersDiv = document.getElementById('recentOrders');
+            orders.slice(0, 3).forEach(order => {
+                const orderItem = document.createElement('div');
+                orderItem.className = 'flex items-center space-x-2';
+                orderItem.innerHTML = `
+                    <i class="fas fa-file-invoice text-gray-500"></i>
+                    <div>
+                        <p class="text-sm font-medium">${order.id}</p>
+                        <p class="text-xs text-gray-500">${order.customer} - ${formatDate(order.date)}</p>
+                    </div>
+                `;
+                recentOrdersDiv.appendChild(orderItem);
+            });
+
+            const sales = orders.reduce((total, order) => total + order.total, 0);
+            document.getElementById('salesThisMonth').textContent = formatCurrency(sales);
+        }).catch(err => {
+            console.error('Error loading components:', err);
+            alert('Có lỗi khi tải các thành phần trang!');
+        });
+
+        // Helper functions
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('vi-VN');
+        }
+
+        function formatCurrency(number) {
+            return number.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        }
+
+        function logout() {
+            localStorage.removeItem('adminAuth');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
